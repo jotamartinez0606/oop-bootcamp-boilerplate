@@ -4,13 +4,15 @@ import java.text.DecimalFormat;
 
 public class Chance {
 
-  private double faces = 6.0;
+  double faces = 6.0;
+
   DecimalFormat rounded = new DecimalFormat("###.00");
 
+  public double chancesOfAnEventHappening() {
+    return Double.parseDouble(rounded.format(1.0 / faces));
+  }
 
-  public double chancesOfOneNumberInADice() {
-
-    return Double.parseDouble(rounded.format((1.0 / faces) * 100.0))  ;
-
+  public double chancesOfAnEventNotHappening() {
+    return (Double.parseDouble(rounded.format(1.0 - chancesOfAnEventHappening())));
   }
 }
