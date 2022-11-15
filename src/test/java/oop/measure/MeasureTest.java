@@ -16,7 +16,7 @@ public class MeasureTest {
 
   @Test
   public void itShouldCompareInchesToYards() {
-    assertEquals(measure.compareInchesToYards(1.0), 0.0278);
+    assertEquals(measure.compareInchesToYards(5.0), 0.1389, 0.01);
   }
 
 
