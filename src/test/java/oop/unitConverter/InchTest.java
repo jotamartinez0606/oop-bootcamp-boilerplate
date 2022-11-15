@@ -20,4 +20,12 @@ public class InchTest {
         Measure valueInInch = new Inch(2.0);
         assertEquals(valueInInch.add(2.0).getValue(), 4.0);
     }
+
+    @Test
+    public void itShouldAddInchesAndMeters() {
+        Measure valueInInch = new Inch(2.0);
+        Measure valueInMeters = new Meter();
+        Measure finalValue = valueInInch.add(valueInMeters.convert(1.0));
+        assertEquals(finalValue.getValue(), 41.37008, 0.001);
+    }
 }
