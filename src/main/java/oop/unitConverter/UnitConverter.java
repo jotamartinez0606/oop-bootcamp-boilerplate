@@ -7,19 +7,19 @@ public class UnitConverter {
   private static final double METERS_TO_CENTIMETERS = 100.00;
   private static final double GALLONS_TO_LITERS = 3.7854;
 
-  public static double compareFeetToMeters(double feet) {
+  public static double convertFeetToMeters(double feet) {
     return feet * FEET_TO_METERS;
   }
 
-  public static double compareInchesToYards(double inches) {
+  public static double convertInchesToYards(double inches) {
     return inches * INCHES_TO_YARDS;
   }
 
-  public static double compareMeterToCentimeters(double meters) {
+  public static double convertMeterToCentimeters(double meters) {
     return meters * METERS_TO_CENTIMETERS;
   }
 
-  public static double compareGallonsToLiters(double gallons) {
+  public static double convertGallonsToLiters(double gallons) {
     return gallons * GALLONS_TO_LITERS;
   }
 }
