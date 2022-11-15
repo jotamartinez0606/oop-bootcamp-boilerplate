@@ -12,8 +12,8 @@ public class Meter extends Measure {
         super(METERS_TO_INCHES, 0.0);
     }
 
-    public Measure add(double valueToAdd) {
-        var result = super.getValue() + valueToAdd;
+    public Measure add(Measure valueToAdd) {
+        var result = super.getValue() + valueToAdd.getValue();
         return new Meter(result);
     }
 }

@@ -14,7 +14,7 @@ public abstract class Measure {
         return inputMeasure * factor;
     }
 
-    public abstract Measure add(double valueToAdd);
+    public abstract Measure add(Measure valueToAdd);
 
     public double getValue(){
         return this.value;

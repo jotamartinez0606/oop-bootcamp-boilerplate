@@ -12,8 +12,14 @@ public class Inch extends Measure {
         super(INCHES_TO_YARDS, 0.0);
     }
 
-    public Measure add(double valueToAdd) {
-        var result = super.getValue() + valueToAdd;
+    public Measure add(Measure valueToAdd) {
+        double valueToAddInInches = valueToAdd.getValue();
+        if(valueToAdd instanceof Meter) {
+            valueToAddInInches = valueToAdd.convert(valueToAdd.getValue());
+        }
+        var result = super.getValue() + valueToAddInInches;
         return new Inch(result);
     }
+
+
 }
