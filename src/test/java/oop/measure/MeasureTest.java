@@ -16,5 +16,10 @@ public class MeasureTest {
     assertEquals(Measure.compareInchesToYards(5.0), 0.1389, 0.01);
   }
 
+  @Test
+  public void itShouldCompareMeterToCentimeters() {
+    assertEquals(Measure.compareMeterToCentimeters(2.0), 200.0);
+  }
+
 
 }
