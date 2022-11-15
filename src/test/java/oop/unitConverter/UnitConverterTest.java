@@ -14,12 +14,6 @@ public class UnitConverterTest {
   }
 
   @Test
-  public void itShouldConvertInchesToYards() {
-    assertEquals(UnitConverter.convertInchesToYards(5.0), 0.1389, 0.01);
-    assertNotEquals(UnitConverter.convertInchesToYards(3.0), 0.0907);
-  }
-
-  @Test
   public void itShouldConvertMeterToCentimeters() {
     assertEquals(UnitConverter.convertMeterToCentimeters(2.0), 200.0);
     assertNotEquals(UnitConverter.convertMeterToCentimeters(5.0), 400.0);
