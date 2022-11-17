@@ -38,13 +38,26 @@ public class ParkingTest {
 
     @Test
     public void itShouldNotifyLandlordWhenNewPurchaseNecessary() {
-        ParkingLandlord observer = new ParkingLandlord();
+        ParkingLandlord landlord = new ParkingLandlord();
         Parking parkingLot = new Parking(10);
-        parkingLot.addPropertyChangeListener(observer);
-        for(int i = 1; i <= 8; i++) {
+        parkingLot.addPropertyChangeListener(landlord);
+        for (int i = 1; i <= 8; i++) {
             parkingLot.park("MAT-00" + i);
         }
-        assertTrue(observer.isPurchaseNeeded());
+        assertTrue(landlord.isPurchaseNeeded());
+    }
+
+    @Test
+    public void itShouldNotifyLandlordWhenParkingShouldBeClosed() {
+        ParkingLandlord landlord = new ParkingLandlord();
+        Parking parkingLot = new Parking(10);
+        parkingLot.addPropertyChangeListener(landlord);
+
+        parkingLot.park("MAT-001");
+        assertTrue(landlord.isClosingNeeded());
+
+        parkingLot.park("MAT-002");
+        assertFalse(landlord.isClosingNeeded());
     }
 
 }
