@@ -1,5 +1,7 @@
 package oop.parking;
 
+import oop.observer.PCLNewsAgency;
+import oop.observer.PCLNewsChannel;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -32,6 +34,17 @@ public class ParkingTest {
     public void itShouldNotParkIfFull() {
         parkingLot.park("MAT-001");
         assertFalse(parkingLot.park("MAT-002"));
+    }
+
+    @Test
+    public void itShouldNotifyLandlordWhenNewPurchaseNecessary() {
+        ParkingLandlord observer = new ParkingLandlord();
+        Parking parkingLot = new Parking(10);
+        parkingLot.addPropertyChangeListener(observer);
+        for(int i = 1; i <= 8; i++) {
+            parkingLot.park("MAT-00" + i);
+        }
+        assertTrue(observer.isPurchaseNeeded());
     }
 
 }

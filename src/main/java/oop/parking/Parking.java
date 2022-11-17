@@ -1,45 +1,36 @@
 package oop.parking;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Parking {
 
-    private static final double MAX_OCCUPATION_FACTOR = 0.75;
     private Set<String> parkedCars;
-    private int totalSlots;
-    private ParkingLandlord landlord;
+    private int maxCapacity;
+    private PropertyChangeSupport support;
 
-    public int getTotalSlots() {
-        return totalSlots;
+    public Parking(int maxCapacity){
+        parkedCars = new HashSet<>();
+        this.maxCapacity = maxCapacity;
+        this.support = new PropertyChangeSupport(this);
     }
 
-    public Parking(int totalSlots){
-        parkedCars = new HashSet<>();
-        this.totalSlots = totalSlots;
-        this.landlord = new ParkingLandlord();
-    }
-
-    public Parking(int totalSlots, ParkingLandlord landlord){
-        parkedCars = new HashSet<>();
-        this.totalSlots = totalSlots;
-        this.landlord = landlord;
+    public int getMaxCapacity() {
+        return maxCapacity;
     }
 
     public boolean park(String licenseNumber) {
-        if(availableSpace() > 0) {
-            var parked = parkedCars.add(licenseNumber);
-            notifyInCaseIsAlmostFull();
-            return parked;
-        }
-        return false;
-    }
+        final var eventPrevious = new ParkingCapacityChangeEvent(maxCapacity, availableSpace());
 
-    private void notifyInCaseIsAlmostFull() {
-        int maxOccupation = (int)(totalSlots * MAX_OCCUPATION_FACTOR);
-        if(parkedCars.size() > maxOccupation) {
-            landlord.setPurchaseNeeded();
+        boolean success = false;
+        if(availableSpace() > 0) {
+            success = parkedCars.add(licenseNumber);
         }
+        final var eventAfter = new ParkingCapacityChangeEvent(maxCapacity, availableSpace());
+        support.firePropertyChange("parkingCapacityChangeEvent", eventPrevious, eventAfter);
+        return success;
     }
 
     public boolean isParked(String licenseNumber) {
@@ -51,10 +42,17 @@ public class Parking {
     }
 
     public int availableSpace() {
-        return totalSlots - parkedCars.size();
+        return maxCapacity - parkedCars.size();
     }
 
     public boolean containsCar(String licenseNumber) {
         return parkedCars.contains(licenseNumber);
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener observer) {
+        support.addPropertyChangeListener(observer);
+    }
+    public void removePropertyChangeListener(PropertyChangeListener observer) {
+        support.removePropertyChangeListener(observer);
     }
 }

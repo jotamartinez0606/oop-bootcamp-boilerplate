@@ -23,11 +23,11 @@ public class Assistant  {
   }
 
   private int isCapacityGreaterThanThreshold(Parking parking) {
-    return (int) (parking.getTotalSlots() * MIN_FREE_PERCENTAGE_TRESHOLD);
+    return (int) (parking.getMaxCapacity() * MIN_FREE_PERCENTAGE_TRESHOLD);
   }
 
   private int isCapacityCloseToLimit(Parking parking) {
-    return (int) (parking.getTotalSlots() * MIN_FREE_PERCENTAGE_TRESHOLD);
+    return (int) (parking.getMaxCapacity() * MIN_FREE_PERCENTAGE_TRESHOLD);
   }
 
   public boolean retrieve(String licenseNumber) {
