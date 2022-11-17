@@ -14,8 +14,24 @@ public class Assistant  {
   }
 
   public boolean park(Car car) {
-    return car.isLarge() ? parkLargeCar(car) : parkRegularCar(car);
+    boolean result = parkRegularCar(car);
+    if (car.isLarge()) {
+      result = parkLargeCar(car);
+    } else if (car.isHandicapped()) {
+      result = parkHandicappedCar(car);
+    }
+    return result;
   }
+
+  private boolean parkHandicappedCar(Car car) {
+    boolean success = false;
+    search: for (Parking parking : parkingLots) {
+      if (parking.isHandicappedFriendly()) {
+        success = parking.park(car.getLicenseNumber());
+        if (success) break search;
+      }
+    }
+    return success;  }
 
   private boolean parkLargeCar(Car car) {
     double availableCapacityPercentage = 0.0;

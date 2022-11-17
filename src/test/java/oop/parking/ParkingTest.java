@@ -13,7 +13,7 @@ public class ParkingTest {
 
     @BeforeMethod
     public void setUp() {
-        parkingLot = new Parking(1);
+        parkingLot = new Parking(1, false);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class ParkingTest {
     @Test
     public void itShouldNotifyLandlordWhenNewPurchaseNecessary() {
         ParkingLandlord landlord = new ParkingLandlord();
-        Parking parkingLot = new Parking(10);
+        Parking parkingLot = new Parking(10, false);
         parkingLot.addPropertyChangeListener(landlord);
         for (int i = 1; i <= 8; i++) {
             parkingLot.park("MAT-00" + i);
@@ -50,7 +50,7 @@ public class ParkingTest {
     @Test
     public void itShouldNotifyLandlordWhenParkingShouldBeClosed() {
         ParkingLandlord landlord = new ParkingLandlord();
-        Parking parkingLot = new Parking(10);
+        Parking parkingLot = new Parking(10, false);
         parkingLot.addPropertyChangeListener(landlord);
 
         parkingLot.park("MAT-001");

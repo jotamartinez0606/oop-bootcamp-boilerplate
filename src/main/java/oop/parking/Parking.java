@@ -9,11 +9,13 @@ public class Parking {
 
     private Set<String> parkedCars;
     private int maxCapacity;
+    private boolean handicappedFriendly;
     private PropertyChangeSupport support;
 
-    public Parking(int maxCapacity){
+    public Parking(int maxCapacity, boolean handicappedFriendly){
         parkedCars = new HashSet<>();
         this.maxCapacity = maxCapacity;
+        this.handicappedFriendly = handicappedFriendly;
         this.support = new PropertyChangeSupport(this);
     }
 
@@ -54,5 +56,8 @@ public class Parking {
     }
     public void removePropertyChangeListener(PropertyChangeListener observer) {
         support.removePropertyChangeListener(observer);
+    }
+    public boolean isHandicappedFriendly() {
+        return handicappedFriendly;
     }
 }
