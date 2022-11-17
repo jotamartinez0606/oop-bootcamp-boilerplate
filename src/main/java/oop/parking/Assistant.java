@@ -13,10 +13,10 @@ public class Assistant  {
     this.parkingLots = new HashSet<>(Arrays.asList(parkingLots));
   }
 
-  public boolean park(String licenseNumber) {
+  public boolean park(Car car) {
     for ( Parking parking : parkingLots) {
       if(parking.availableSpace() > isCapacityGreaterThanThreshold(parking)) {
-        return parking.park(licenseNumber);
+        return parking.park(car.getLicenseNumber());
       }
     }
     return false;
@@ -30,11 +30,11 @@ public class Assistant  {
     return (int) (parking.getMaxCapacity() * MIN_FREE_PERCENTAGE_TRESHOLD);
   }
 
-  public boolean retrieve(String licenseNumber) {
+  public boolean retrieve(Car car) {
     for ( Parking parking : parkingLots) {
-      if(parking.containsCar(licenseNumber))
+      if(parking.containsCar(car.getLicenseNumber()))
       {
-        return parking.retrieve(licenseNumber);
+        return parking.retrieve(car.getLicenseNumber());
       }
     }
     return false;
