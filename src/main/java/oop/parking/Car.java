@@ -2,11 +2,11 @@ package oop.parking;
 
 public class Car {
     private final String licenseNumber;
-    private final boolean isLarge;
+    private final boolean large;
 
-    public Car(final String licenseNumber, final boolean isLarge) {
+    public Car(final String licenseNumber, final boolean large) {
         this.licenseNumber = licenseNumber;
-        this.isLarge = isLarge;
+        this.large = large;
     }
 
     public String getLicenseNumber() {
@@ -14,6 +14,6 @@ public class Car {
     }
 
     public boolean isLarge() {
-        return isLarge;
+        return large;
     }
 }

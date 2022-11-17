@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Assistant  {
 
-  private static final double MIN_FREE_PERCENTAGE_TRESHOLD = 0.2;
+  private static final double MIN_FREE_PERCENTAGE_THRESHOLD = 0.2;
   private Set<Parking> parkingLots;
 
   public Assistant(Parking... parkingLots) {
@@ -23,11 +23,7 @@ public class Assistant  {
   }
 
   private int isCapacityGreaterThanThreshold(Parking parking) {
-    return (int) (parking.getMaxCapacity() * MIN_FREE_PERCENTAGE_TRESHOLD);
-  }
-
-  private int isCapacityCloseToLimit(Parking parking) {
-    return (int) (parking.getMaxCapacity() * MIN_FREE_PERCENTAGE_TRESHOLD);
+    return (int) (parking.getMaxCapacity() * MIN_FREE_PERCENTAGE_THRESHOLD);
   }
 
   public boolean retrieve(Car car) {

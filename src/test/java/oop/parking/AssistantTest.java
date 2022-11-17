@@ -74,10 +74,8 @@ public class AssistantTest {
 
     assistant = new Assistant(parking, parking2);
 
-    for(int i = 1; i <= 2; i++) {
-      var license = "MAT-00" + i;
-      assertTrue(assistant.park(new Car(license,true)));
-    }
+    assertTrue(assistant.park(new Car("MAT-001",true)));
+    assertTrue(assistant.park(new Car("MAT-002",true)));
 
     assertEquals(parking.availableSpace(), 4);
     assertEquals(parking2.availableSpace(), 4);
