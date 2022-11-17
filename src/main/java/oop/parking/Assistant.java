@@ -14,10 +14,23 @@ public class Assistant  {
   }
 
   public boolean park(Car car) {
-    for ( Parking parking : parkingLots) {
-      if(parking.availableSpace() > isCapacityGreaterThanThreshold(parking)) {
-        return parking.park(car.getLicenseNumber());
+    if (!car.isLarge()) {
+      for (Parking parking : parkingLots) {
+        if (parking.availableSpace() > isCapacityGreaterThanThreshold(parking)) {
+          return parking.park(car.getLicenseNumber());
+        }
       }
+    } else {
+      double availableCapacityPercentage = 0.0;
+      Parking chosenParking = null;
+      for (Parking parking : parkingLots) {
+        double currentParkingAvailableCapacityPercentage = ((parking.availableSpace() / parking.getMaxCapacity()) * 1.0) * 100;
+        if (currentParkingAvailableCapacityPercentage > availableCapacityPercentage) {
+          chosenParking = parking;
+          availableCapacityPercentage = currentParkingAvailableCapacityPercentage;
+        }
+      }
+      return chosenParking.park(car.getLicenseNumber());
     }
     return false;
   }
