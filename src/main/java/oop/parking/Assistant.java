@@ -23,6 +23,11 @@ public class Assistant  {
     return result;
   }
 
+  public boolean parkV2(Car car) {
+    ParkStrategy parkStrategy = car.selectParkStrategy(parkingLots);
+    return parkStrategy.park(car, parkingLots);
+  }
+
   private boolean parkHandicappedCar(Car car) {
     boolean success = false;
     search: for (Parking parking : parkingLots) {
