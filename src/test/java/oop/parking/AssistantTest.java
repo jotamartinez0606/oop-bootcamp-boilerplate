@@ -35,10 +35,10 @@ public class AssistantTest {
   public void itShouldParkCarInMultipleParkingLots() {
     Parking parking2 = new Parking(2);
     assistant = new Assistant(parking, parking2);
-    for(int i = 1; i <= 4; i++) {
-      var license = "MAT-00" + i;
-      assertTrue(assistant.park(new Car(license,false)));
-    }
+    assertTrue(assistant.park(new Car("MAT-001",false)));
+    assertTrue(assistant.park(new Car("MAT-002",false)));
+    assertTrue(assistant.park(new Car("MAT-003",false)));
+    assertTrue(assistant.park(new Car("MAT-004",false)));
     assertFalse(assistant.park(new Car("MAT-005", false)));
   }
 
